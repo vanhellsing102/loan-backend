@@ -1,5 +1,6 @@
 
 const globalErrorHandler = (err, req, res, next) =>{
+    console.log("Globar error", err);
     let statusCode = err.statusCode || 500;
     let message = err.message || "Internal Server Error";
     let errorSource = [

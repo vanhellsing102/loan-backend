@@ -1,8 +1,9 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from "cors";
-import globalErrorHandler from './app/middlewares/globalErrorHandler';
-import notFound from './app/middlewares/notFound';
+import globalErrorHandler from './app/middlewares/globalErrorHandler.js';
+import router from './app/routes/index.js';
+import notFound from './app/middlewares/notFound.js';
 const app = express();
 
 // parsers---------------------------------------------------------
@@ -12,6 +13,9 @@ app.use(cors({
     origin: ['http://localhost:5173'],
     credentials: true
 }))
+
+// All routes--------------------------------------------------------------
+app.use("/api/v1", router);
 
 app.get("/", (req, res) =>{
     res.send("Loan Management System Running");
