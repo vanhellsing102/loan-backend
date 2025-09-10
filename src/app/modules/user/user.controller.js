@@ -26,8 +26,20 @@ const loginUser = catchAsync(async(req, res) =>{
     })
 })
 
+const updatePersonalInformation = catchAsync(async(req, res) =>{
+    const {userId} = req.params;
+    const {personalInformation} = req.body;
+    const result = await UserServices.updatePersonalInformationInDB(userId, personalInformation);
+    sendResponse(res, {
+        statusCode: statusCodes.OK,
+        success: true,
+        message: "User personal information updated successfully",
+        data: result
+    })
+})
 
 export const UserControllers = {
     createUser,
     loginUser,
+    updatePersonalInformation
 }
