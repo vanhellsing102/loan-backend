@@ -22,7 +22,6 @@ const loginUserFromDB = async(payload) =>{
     }
     return exitingUser;
 }
-
 const updatePersonalInformationInDB = async(userId, payload)=>{
     const updatedPayload = {personalInformation: {...payload}};
     const exitingUser = await User.findById(userId);
@@ -33,8 +32,24 @@ const updatePersonalInformationInDB = async(userId, payload)=>{
     return result;
 }
 
+const updatePasswordInDB = async(payload) =>{
+    const {email, currentPassword, newPassword} = payload;
+    const existingUser = await User.findOne({email});
+    if(!existingUser){
+        throw new Error("User does not exists");
+    }
+    const comparePassword = await bcrypt.compare(currentPassword, existingUser.password);
+    if(!comparePassword){
+        throw new Error("Password is incorrect. Please enter the correct password");
+    }
+    const newPasswordHash = await bcrypt.hash(newPassword, 10);
+    const result = await User.findOneAndUpdate({email}, {password: newPasswordHash}, {new: true});
+    return result;
+}
+
 export const UserServices = {
     createUserIntoDB,
     loginUserFromDB,
     updatePersonalInformationInDB,
+    updatePasswordInDB
 }

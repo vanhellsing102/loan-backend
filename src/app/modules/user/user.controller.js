@@ -15,7 +15,6 @@ const createUser = catchAsync(async(req, res) =>{
         data: result
     })
 })
-
 const loginUser = catchAsync(async(req, res) =>{
     const {loginUser} = req.body;
     const result = await UserServices.loginUserFromDB(loginUser);
@@ -26,15 +25,24 @@ const loginUser = catchAsync(async(req, res) =>{
         data: result
     })
 })
-
 const updatePersonalInformation = catchAsync(async(req, res) =>{
     const {userId} = req.params;
-    const {personalInformation} = req.body;
-    const result = await UserServices.updatePersonalInformationInDB(userId, personalInformation);
+    const {updatedUserInformation} = req.body;
+    const result = await UserServices.updatePersonalInformationInDB(userId, updatedUserInformation);
     sendResponse(res, {
         statusCode: statusCodes.OK,
         success: true,
-        message: "User personal information updated successfully",
+        message: "Profile updated successfully",
+        data: result
+    })
+})
+const updatePassword = catchAsync(async(req, res) =>{
+    const newUpdatePasswordInfo = req.body;
+    const result = await UserServices.updatePasswordInDB(newUpdatePasswordInfo);
+    sendResponse(res, {
+        statusCode: statusCodes.OK,
+        success: true,
+        message: "Password updated successfully",
         data: result
     })
 })
@@ -42,5 +50,6 @@ const updatePersonalInformation = catchAsync(async(req, res) =>{
 export const UserControllers = {
     createUser,
     loginUser,
-    updatePersonalInformation
+    updatePersonalInformation,
+    updatePassword
 }
