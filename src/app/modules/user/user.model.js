@@ -17,10 +17,12 @@ const userSchema = new Schema(
       required: [true, "Phone number is required"],
     },
     password: {
-      type: String
+      type: String,
+      required: true
     },
     terms: {
-      type: String
+      type: String,
+      required: true
     },
     personalInformation: {
       type: {
