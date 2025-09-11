@@ -5,7 +5,8 @@ import statusCodes from "http-status";
 
 
 const createUser = catchAsync(async(req, res) =>{
-    const {newUser} = req.body;
+    const newUser = req.body;
+    // console.log("newUser", newUser);
     const result = await UserServices.createUserIntoDB(newUser);
     sendResponse(res, {
         statusCode: statusCodes.OK,

@@ -9,19 +9,18 @@ const userSchema = new Schema(
   {
     email: {
       type: String,
-      required: true,
+      required: [true, "Email is required"],
       unique: true,
     },
     phone: {
       type: String,
+      required: [true, "Phone number is required"],
     },
     password: {
-      type: String,
-      required: true,
+      type: String
     },
     terms: {
-      type: String,
-      required: true,
+      type: String
     },
     personalInformation: {
       type: {
