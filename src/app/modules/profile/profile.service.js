@@ -2,6 +2,11 @@ import User from "../User/user.model.js";
 import Profile from "./profile.model.js";
 
 const updateProfileInDB = async(userId, payload) =>{
+    // console.log(payload);
+    const {phone} = payload;
+    if(phone){
+        await User.findByIdAndUpdate(userId, {phone}, {new: true});
+    }
     const {personalInfo: {...personalInfo}, contactInfo: {...contactInfo}, financialInfo: {...financialInfo}} = payload;
     const existingUser = await User.findById(userId);
     if(!existingUser){
@@ -17,7 +22,7 @@ const updateProfileInDB = async(userId, payload) =>{
     }
 }
 const getProfileFromDB = async(userId) =>{
-    const result = await Profile.findOne({profileId: userId});
+    const result = await Profile.findOne({profileId: userId}).select("personalInfo.firstName personalInfo.lastName contactInfo.address contactInfo.city contactInfo.state contactInfo.zipCode -_id");
     return result;
 }
 
