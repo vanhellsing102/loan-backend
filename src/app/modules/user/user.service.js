@@ -22,16 +22,6 @@ const loginUserFromDB = async(payload) =>{
     }
     return exitingUser;
 }
-const updatePersonalInformationInDB = async(userId, payload)=>{
-    const updatedPayload = {personalInformation: {...payload}};
-    const exitingUser = await User.findById(userId);
-    if(!exitingUser){
-        throw new Error("User does not exists");
-    }
-    const result = await User.findByIdAndUpdate(userId, updatedPayload, {new: true});
-    return result;
-}
-
 const updatePasswordInDB = async(payload) =>{
     const {email, currentPassword, newPassword} = payload;
     const existingUser = await User.findOne({email});
@@ -50,6 +40,6 @@ const updatePasswordInDB = async(payload) =>{
 export const UserServices = {
     createUserIntoDB,
     loginUserFromDB,
-    updatePersonalInformationInDB,
+    // updatePersonalInformationInDB,
     updatePasswordInDB
 }

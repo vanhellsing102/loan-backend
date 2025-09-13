@@ -15,7 +15,17 @@ const updateProfile = catchAsync(async(req, res) =>{
         data: result
     })
 })
-
+const getProfile = catchAsync(async(req, res) =>{
+    const {userId} = req.params;
+    const result = await ProfileServices.getProfileFromDB(userId);
+    sendResponse(res, {
+        statusCode: statusCodes.OK,
+        success: true,
+        message: "Profile data retrieved Successfully",
+        data: result
+    })
+})
 export const ProfileControllers = {
     updateProfile,
+    getProfile
 }

@@ -1,10 +1,6 @@
-import mongoose, {model, Schema} from "mongoose";
+import {model, Schema} from "mongoose";
 
 const profileSchema = new Schema({
-    _id: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    },
     personalInfo: {
         type: {
             firstName: {
@@ -64,6 +60,13 @@ const profileSchema = new Schema({
             },
         },
         _id: false
+    },
+    profileId: {
+        type: String
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 })
 

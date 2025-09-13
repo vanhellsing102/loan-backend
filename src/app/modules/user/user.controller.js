@@ -25,17 +25,6 @@ const loginUser = catchAsync(async(req, res) =>{
         data: result
     })
 })
-const updatePersonalInformation = catchAsync(async(req, res) =>{
-    const {userId} = req.params;
-    const {updatedUserInformation} = req.body;
-    const result = await UserServices.updatePersonalInformationInDB(userId, updatedUserInformation);
-    sendResponse(res, {
-        statusCode: statusCodes.OK,
-        success: true,
-        message: "Profile updated successfully",
-        data: result
-    })
-})
 const updatePassword = catchAsync(async(req, res) =>{
     const newUpdatePasswordInfo = req.body;
     const result = await UserServices.updatePasswordInDB(newUpdatePasswordInfo);
@@ -50,6 +39,5 @@ const updatePassword = catchAsync(async(req, res) =>{
 export const UserControllers = {
     createUser,
     loginUser,
-    updatePersonalInformation,
     updatePassword
 }

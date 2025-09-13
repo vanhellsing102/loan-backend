@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.post("/sign-up", UserControllers.createUser);
 router.post("/sign-in", UserControllers.loginUser);
-router.patch("/personal-information/:userId", UserControllers.updatePersonalInformation);
 router.patch("/security", UserControllers.updatePassword);
 
 export const UserRoutes = router;
