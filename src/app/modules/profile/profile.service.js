@@ -22,7 +22,7 @@ const updateProfileInDB = async(userId, payload) =>{
     }
 }
 const getProfileFromDB = async(userId) =>{
-    const result = await Profile.findOne({profileId: userId}).select("personalInfo.firstName personalInfo.lastName contactInfo.address contactInfo.city contactInfo.state contactInfo.zipCode -_id");
+    const result = await Profile.findOne({profileId: userId}).select("personalInfo.firstName personalInfo.lastName personalInfo.dateOfBirth personalInfo.gender contactInfo.address contactInfo.address contactInfo.city contactInfo.state contactInfo.city contactInfo.state contactInfo.zipCode -_id financialInfo");
     return result;
 }
 
