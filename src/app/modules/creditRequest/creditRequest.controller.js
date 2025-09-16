@@ -13,7 +13,17 @@ const applyCreditRequest = catchAsync(async(req, res) =>{
         data: result
     })
 })
+const getCreditRequest = catchAsync(async(req, res) =>{
+    const result = await CreditRequestServices.getCreditRequestFromDB();
+    sendResponse(res, {
+        statusCode: statusCodes.OK,
+        success: true,
+        message: "Recieved all credit request",
+        data: result
+    })
+})
 
 export const CreditRequestControllers = {
-    applyCreditRequest
+    applyCreditRequest,
+    getCreditRequest
 }

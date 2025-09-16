@@ -9,7 +9,12 @@ const applyCreditRequestIntoDB = async(payload) =>{
     const result = await CreditRequest.create(payload);
     return result;
 }
+const getCreditRequestFromDB = async() =>{
+    const result = await CreditRequest.find();
+    return result;
+}
 
 export const CreditRequestServices = {
-    applyCreditRequestIntoDB
+    applyCreditRequestIntoDB,
+    getCreditRequestFromDB
 }
