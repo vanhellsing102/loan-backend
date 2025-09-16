@@ -1,4 +1,4 @@
-import {model, Schema} from "mongoose";
+import mongoose, {model, Schema} from "mongoose";
 
 const profileSchema = new Schema({
     personalInfo: {
@@ -70,5 +70,5 @@ const profileSchema = new Schema({
     }
 })
 
-const Profile = model("Profile", profileSchema);
+const Profile = mongoose.models.Profile || model("Profile", profileSchema);
 export default Profile;
