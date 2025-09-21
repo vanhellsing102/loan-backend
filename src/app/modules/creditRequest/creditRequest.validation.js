@@ -31,6 +31,9 @@ const creditRequestValidationSchema = z.object({
     creditScore: z.number({
       required_error: "Credit Score is required",
     }),
+    creditTag: z.string({
+      required_error: "Credit tag is required",
+    }),
     existingLoan: z.enum(["yes", "no"]),
     loanAmount: z.number({
       required_error: "Loan Amount is required",
@@ -41,6 +44,12 @@ const creditRequestValidationSchema = z.object({
     valueOfLandOwnership: z.number({
       required_error: "Value of Land Ownership is required",
     }),
+    electricityBill: z.number({
+      required_error: "electricityBill is required",
+    }),
+    existingLoanAmount: z.any({
+      required_error: "existingLoanAmount is required",
+    }).optional()
   })
 })
 

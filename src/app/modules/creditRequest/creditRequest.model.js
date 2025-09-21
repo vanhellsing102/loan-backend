@@ -23,7 +23,10 @@ const creditRequestSchema = new Schema({
             existingLoan: {type: String, required: true},
             loanAmount: {type: Number, required: true},
             mobileMoneyBalance: {type: Number, required: true},
-            valueOfLandOwnership: {type: Number, required: true}
+            valueOfLandOwnership: {type: Number, required: true},
+            creditTag: {type: String, required: true},
+            electricityBill: {type: String, required: true},
+            existingLoanAmount: {type: Number}
         },
         _id: false
     }
