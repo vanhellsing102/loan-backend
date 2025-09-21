@@ -7,10 +7,12 @@ const creditDecisionSchema = new Schema({
         unique: true
     },
     interestRate: {
-        type: Number
+        type: Number,
+        default: 0
     },
     loanAmount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     notes: {
         type: String,
@@ -23,10 +25,11 @@ const creditDecisionSchema = new Schema({
     },
     terms: {
         type: String,
-        enum: ["3", "6", "12", "24", "36"]
+        enum: ["3", "6", "12", "24", "36"],
+        default: "12"
     }
 })
 
-const CreditDecision = mongoose.models.CreditDecision || model("CreditDecsion", creditDecisionSchema);
+const CreditDecision = mongoose.models.CreditDecision || model("CreditDecision", creditDecisionSchema);
 
 export default CreditDecision;
