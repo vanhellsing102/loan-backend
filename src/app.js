@@ -1,28 +1,27 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import router from '../app/routes/index.js';
-import globalErrorHandler from '../app/middlewares/globalErrorHandler.js';
-import notFound from '../app/middlewares/notFound.js';
-
+import cors from "cors";
+import globalErrorHandler from './app/middlewares/globalErrorHandler.js';
+import router from './app/routes/index.js';
+import notFound from './app/middlewares/notFound.js';
 const app = express();
 
-// Parsers
+// parsers---------------------------------------------------------
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    origin: ['http://localhost:5173', "http://localhost:3000"],
     credentials: true
-}));
+}))
 
-// Routes
+// All routes--------------------------------------------------------------
 app.use("/api/v1", router);
 
-app.get("/", (req, res) => {
-    res.send("Loan Management System Running (Serverless)");
-});
+app.get("/", (req, res) =>{
+    res.send("Loan Management System Running");
+})
 
-// Error handlers
+// globar error handler and not found handler--------------------------------------
 app.use(globalErrorHandler);
 app.use(notFound);
 

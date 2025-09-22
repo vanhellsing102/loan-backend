@@ -1,25 +1,21 @@
-import app from '../src/app.js';
-import mongoose from 'mongoose';
-import config from '../app/config/index.js';
+import app from "./app.js";
+import mongoose from "mongoose";
+import config from "./app/config/index.js";
 
-// MongoDB cache for serverless
-let cached = global.mongoose;
-if (!cached) cached = global.mongoose = { conn: null, promise: null };
+let server;
 
-async function dbConnect() {
-  if (cached.conn) return cached.conn;
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(config.databaseUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }).then(m => m);
+async function main() {
+  try {
+    await mongoose.connect(config.databaseUrl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    console.log("Database connected");
+    server = app.listen(config.port, () => {
+      console.log(`Server is running on port ${config.port}`);
+    });
+  } catch (err) {
+    console.log("Error connecting to the database:", err);
   }
-  cached.conn = await cached.promise;
-  return cached.conn;
 }
-
-// Export serverless function
-export default async function handler(req, res) {
-  await dbConnect();
-  app(req, res);
-}
+main();
