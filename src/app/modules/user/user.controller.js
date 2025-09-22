@@ -35,9 +35,44 @@ const updatePassword = catchAsync(async(req, res) =>{
         data: result
     })
 })
+const sendOtp = catchAsync(async(req, res) =>{
+    const {email} = req.body;
+    const result = await UserServices.sendOtpFromNodemailer(email);
+    sendResponse(res, {
+        statusCode: statusCodes.OK,
+        success: true,
+        message: "Otp send Successfully",
+        data: result
+    })
+})
+const verifyOtp = catchAsync(async(req, res) =>{
+    const {otp, email} = req.body;
+    const result = await UserServices.verifyOtpFromDB(email, otp);
+    sendResponse(res, {
+        statusCode: statusCodes.OK,
+        success: true,
+        message: "OTP verified. You can reset your password now",
+        data: result
+    })
+})
+
+const resetPassword = catchAsync(async(req, res) =>{
+    const {email, password} = req.body;
+    // console.log("email", email, password);
+    const result = await UserServices.resetPasswordFromDB(email, password);
+    sendResponse(res, {
+        statusCode: statusCodes.OK,
+        success: true,
+        message: "Password Reset Successfully",
+        data: result
+    })
+})
 
 export const UserControllers = {
     createUser,
     loginUser,
-    updatePassword
+    updatePassword,
+    sendOtp,
+    verifyOtp,
+    resetPassword
 }

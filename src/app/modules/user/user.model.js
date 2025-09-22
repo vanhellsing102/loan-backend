@@ -24,6 +24,12 @@ const userSchema = new Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user"
+    },
+    forgotPasswordOtp: {
+      type: String
+    },
+    forgotPasswordExpires: {
+      type: String
     }
 },
   { timestamps: true }
