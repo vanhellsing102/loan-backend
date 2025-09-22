@@ -23,7 +23,3 @@ export default async function handler(req, res) {
   await dbConnect();
   app(req, res);
 }
-
-app.listen(5000,()=>{
-    console.log(`alsdkf alkdjfs afj adjf`);
-})
