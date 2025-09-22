@@ -1,7 +1,7 @@
 import User from "./user.model.js";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
-import config from "../../config/index.js";
+// import config from "../../config/index.js";
 
 
 const createUserIntoDB = async(payload) =>{
@@ -54,8 +54,8 @@ const sendOtpFromNodemailer = async(email) =>{
         port: 587,
         secure: false,
         auth: {
-            user: config.email,
-            pass: config.pass
+            user: process.env.EMAIL, //config.email,
+            pass: process.env.PASS //config.pass
         }
     })
     await transporter.sendMail({

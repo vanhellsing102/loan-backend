@@ -5,8 +5,10 @@ import globalErrorHandler from './app/middlewares/globalErrorHandler.js';
 import router from './app/routes/index.js';
 import notFound from './app/middlewares/notFound.js';
 const app = express();
+import dotenv from "dotenv";
 
 // parsers---------------------------------------------------------
+dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
