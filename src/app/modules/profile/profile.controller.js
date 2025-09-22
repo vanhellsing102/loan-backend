@@ -5,9 +5,9 @@ import statusCodes from "http-status";
 
 const updateProfile = catchAsync(async(req, res) =>{
     const {userId} = req.params;
-    const profileInfo = req.body;
+    const {clientInfo} = req.body;
     // console.log(profileInfo);
-    const result = await ProfileServices.updateProfileInDB(userId, profileInfo);
+    const result = await ProfileServices.updateProfileInDB(userId, clientInfo);
     sendResponse(res, {
         statusCode: statusCodes.OK,
         success: true,

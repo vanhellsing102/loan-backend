@@ -5,9 +5,9 @@ import statusCodes from "http-status";
 
 
 const createUser = catchAsync(async(req, res) =>{
-    const newUser = req.body;
+    const {clientInfo} = req.body;
     // console.log("newUser", newUser);
-    const result = await UserServices.createUserIntoDB(newUser);
+    const result = await UserServices.createUserIntoDB(clientInfo);
     sendResponse(res, {
         statusCode: statusCodes.OK,
         success: true,
@@ -16,8 +16,8 @@ const createUser = catchAsync(async(req, res) =>{
     })
 })
 const loginUser = catchAsync(async(req, res) =>{
-    const {loginUser} = req.body;
-    const result = await UserServices.loginUserFromDB(loginUser);
+    const {clientInfo} = req.body;
+    const result = await UserServices.loginUserFromDB(clientInfo);
     sendResponse(res, {
         statusCode: statusCodes.OK,
         success: true,
