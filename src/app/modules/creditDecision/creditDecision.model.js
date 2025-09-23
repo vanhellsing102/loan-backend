@@ -25,8 +25,7 @@ const creditDecisionSchema = new Schema({
     },
     terms: {
         type: String,
-        enum: ["3", "6", "12", "24", "36"],
-        default: "12"
+        enum: ["3", "6", "12", "24", "36"]
     }
 })
 

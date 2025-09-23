@@ -10,7 +10,7 @@ const creditRequestValidationSchema = z.object({
         required_error: "Notes are required"
     }),
     status: z.enum(["approve", "reject"]),
-    terms: z.enum(["3", "6", "12", "24", "36"]).default("12").optional()
+    terms: z.enum(["3", "6", "12", "24", "36"]).optional()
 })
 
 export default creditRequestValidationSchema;
