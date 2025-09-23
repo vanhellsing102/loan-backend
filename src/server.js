@@ -11,9 +11,9 @@ async function main() {
         useUnifiedTopology: true,
     });
     console.log("Database connected");
-    server = app.listen(process.env.PORT, () => { //config.port
-      console.log(`Server is running on port ${process.env.PORT}`);
-    });
+    // server = app.listen(process.env.PORT, () => { //config.port
+    //   console.log(`Server is running on port ${process.env.PORT}`);
+    // });
   } catch (err) {
     console.log("Error connecting to the database:", err);
   }
