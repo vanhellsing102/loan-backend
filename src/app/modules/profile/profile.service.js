@@ -1,4 +1,4 @@
-import User from "../User/user.model.js";
+import User from "../user/user.model.js";
 import Profile from "./profile.model.js";
 
 const updateProfileInDB = async(userId, payload) =>{
