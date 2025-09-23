@@ -6,7 +6,7 @@ let server;
 
 async function main() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI || 5000, { //config.databaseUrl
+    await mongoose.connect(process.env.MONGODB_URI || 4000, { //config.databaseUrl
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
