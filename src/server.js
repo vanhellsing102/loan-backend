@@ -1,18 +1,17 @@
 import app from "./app.js";
 import mongoose from "mongoose";
-// import config from "./app/config/index.js";
 
 let server;
 
 async function main() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, { //config.databaseUrl
+    await mongoose.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
     console.log("Database connected");
     const port = process.env.PORT;
-    server = app.listen(port, "0.0.0.0", () => { //config.port
+    server = app.listen(port, "0.0.0.0", () => {
       console.log(`Server is running on port ${port}`);
     });
   } catch (err) {
